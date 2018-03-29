@@ -1,11 +1,17 @@
 Package: wanikanir
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R Interface into the WaniKani API
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: R. Benz
+Maintainer: R. Benz <rwbenz@gmail.com>
+Description: Retrieve data from the WaniKani API into R friendly data structures
+License: MIT
 Encoding: UTF-8
 LazyData: true
+Imports:
+  jsonlite,
+  RCurl,
+  lubridate,
+  purrr,
+  stringr
+RoxygenNote: 6.0.1
