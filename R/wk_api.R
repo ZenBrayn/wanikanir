@@ -22,6 +22,8 @@ AVAILABLE_DATA <- list("v1.4" = c("user-information",
 #' The names correspond to the strings used in the URL
 #' requests and can be found on the WaniKani API documentation page.
 #'
+#' @export
+#'
 #' @param data_name the name of the "data unit" -- see the API docs
 #' @param api_key the users API key
 #' @param api_ver the version of the API to use; defaults to API_VER
@@ -82,6 +84,8 @@ get_wk_data_by_name <- function(data_name, api_key, api_ver = API_VER,
 #' Get all of the available data from the WaniKani API
 #'
 #' Retrieves all of the data from the the WaniKani API
+#'
+#' @export
 #'
 #' @param api_key the users API key
 #' @param api_ver the API version to use
