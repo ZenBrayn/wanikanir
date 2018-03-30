@@ -67,6 +67,9 @@ get_wk_data_by_name <- function(data_name, api_key, api_ver = API_VER,
   # This depends on the data type
   if (data_name == "user-information") {
     results <- results$user_information
+  } else if (data_name == "vocabulary"){
+    results <- results$requested_information
+    results <- results$general
   } else {
     results <- results$requested_information
   }
@@ -102,6 +105,11 @@ get_wk_data <- function(api_key,
                         max_recent_unlocks = 100, critical_items_pct = 75,
                         time_message = TRUE, print_url = TRUE) {
 
+  # Return NULL if no api_key is provided
+  if (api_key == "") {
+    return(NULL)
+  }
+
   cat("Extracting WaniKani data...", "\n")
 
   t0 <- lubridate::now()
@@ -113,7 +121,7 @@ get_wk_data <- function(api_key,
     cache_filename <- file.path(cache_dir, paste0(api_key, ".rds"))
     if (file.exists(cache_filename)) {
       results <- readRDS(cache_filename)
-      t1 <- now()
+      t1 <- lubridate::now()
       print_time_message(paste0(cache_filename, " from cache"), t0, t1)
       return(results)
     }
@@ -134,6 +142,9 @@ get_wk_data <- function(api_key,
                         opt_arg = oarg, time_message = time_message, print_url = print_url)
   })
   names(results) <- stringr::str_replace(data_names, "-", "_")
+
+  # Add a data timestamp
+  results$timestamp <- lubridate::now()
 
   t1 <- lubridate::now()
   print_time_message("All Data", t0, t1)
